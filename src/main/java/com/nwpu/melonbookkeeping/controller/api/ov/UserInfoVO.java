@@ -7,18 +7,18 @@ import java.io.Serializable;
 
 @Data
 public class UserInfoVO implements Serializable {
-    @ApiModelProperty("用户名")
+    @ApiModelProperty(value = "用户名", required = true)
     private String userName;
 
-    @ApiModelProperty("昵称")
+    @ApiModelProperty(value = "昵称", required = true)
     private String nickName;
 
-    @ApiModelProperty("头像地址")
+    @ApiModelProperty(value = "头像地址", required = true)
     private String avatar;
 
-    @ApiModelProperty("手机号")
+    @ApiModelProperty(value = "手机号", required = true)
     private String phoneNumber;
 
-    @ApiModelProperty("accessToken")
+    @ApiModelProperty(value = "accessToken", allowEmptyValue = true)
     private String accessToken;
 }

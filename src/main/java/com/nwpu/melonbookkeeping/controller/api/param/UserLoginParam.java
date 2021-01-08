@@ -7,10 +7,10 @@ import javax.validation.constraints.NotEmpty;
 
 @Data
 public class UserLoginParam {
-    @ApiModelProperty("登录名")
+    @ApiModelProperty(value = "登录名", required = true)
     @NotEmpty(message = "The username can't be null")
     private String userName;
-    @ApiModelProperty("登录密码")
+    @ApiModelProperty(value = "登录密码", required = true)
     @NotEmpty(message = "The password can't be null")
     private String password;
 }
