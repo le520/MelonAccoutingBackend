@@ -1,0 +1,62 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<div class="side-nav expand-lg">
+    <div class="side-nav-inner">
+        <ul class="side-nav-menu">
+            <li class="side-nav-header">
+                <c:set var="currentUrl" value="<%=currentUrl%>"/>
+                <span>导航栏</span>
+            </li>
+            <li class="nav-item dropdown <c:if test="${currentUrl.equals('/user/basic')}">open</c:if>">
+                <a href="#" class="dropdown-toggle">
+                            <span class="icon-holder">
+                                <i class="lni-user"></i>
+                            </span>
+                    <span class="title">首页</span>
+                    <span class="arrow">
+                                <i class="lni-chevron-right"></i>
+                            </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.startsWith('/good/goodsId/')}">class="active"</c:if>>
+                        <a href="/admin//goods/catelog/0">最新发布</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.startsWith('/good/goodsId/')}">class="active"</c:if>>
+                        <a href="/admin//goods/catelog/1">闲置数码</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.startsWith('/good/goodsId/')}">class="active"</c:if>>
+                        <a href="/admin//goods/catelog/2">校园代步</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.startsWith('/good/goodsId/')}">class="active"</c:if>>
+                        <a href="/admin//goods/catelog/3">电器日用</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.startsWith('/good/goodsId/')}">class="active"</c:if>>
+                        <a href="/admin//goods/catelog/4">图书教材</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.startsWith('/good/goodsId/')}">class="active"</c:if>>
+                        <a href="/admin//goods/catelog/5">美妆衣物</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.startsWith('/good/goodsId/')}">class="active"</c:if>>
+                        <a href="/admin//goods/catelog/6">运动棋牌</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.startsWith('/good/goodsId/')}">class="active"</c:if>>
+                        <a href="/admin//goods/catelog/7">票券小物</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<div class="side-nav expand-lg">
+    <div class="side-nav-inner">
+        <ul class="side-nav-menu">
+            <li class="side-nav-header">
+                <c:set var="currentUrl" value="<%=currentUrl%>"/>
+                <span>Navigation Bar</span>
+            </li>
+            <li class="nav-item dropdown <c:if test="${currentUrl.equals('/user/basic')}">open</c:if>">
+                <a href="#" class="dropdown-toggle">
+                            <span class="icon-holder">
+                                <i class="lni-user"></i>
+                            </span>
+                    <span class="title">Personal Center</span>
+                    <span class="arrow">
+                                <i class="lni-chevron-right"></i>
+                            </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.equals('/user/basic')}">class="active"</c:if>>
+                        <a href="/admin/user/basic">Personal Information</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown <c:if test="${currentUrl.equals('/user/allGoods') || currentUrl.equals('/goods/publishGoods')||currentUrl.contains('/goods/editGoods')}">open</c:if>">
+                <a href="#" class="dropdown-toggle">
+                            <span class="icon-holder">
+                                <i class="lni-cart"></i>
+                            </span>
+                    <span class="title">My Idle</span>
+                    <span class="arrow">
+                                <i class="lni-chevron-right"></i>
+                            </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li
+                            <c:if test="${currentUrl.equals('/user/allGoods') ||currentUrl.contains('/goods/editGoods')}">class="active"</c:if>>
+                        <a href="/admin/user/allGoods">Idle List</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.equals('/goods/publishGoods')}">class="active"</c:if>>
+                        <a href="/admin/goods/publishGoods">Publish Goods</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown <c:if test="${currentUrl.equals('/user/allFocus')}">open</c:if>">
+                <a href="#" class="dropdown-toggle">
+                            <span class="icon-holder">
+                                <i class="lni-heart"></i>
+                            </span>
+                    <span class="title">My Concerns</span>
+                    <span class="arrow">
+                                <i class="lni-chevron-right"></i>
+                            </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.equals('/user/allFocus')}">class="active"</c:if>>
+                        <a href="/admin/user/allFocus">My Focus</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown <c:if test="${currentUrl.equals('/orders/myOrders')}">open</c:if>">
+                <a href="#" class="dropdown-toggle">
+                            <span class="icon-holder">
+                                <i class="lni-list"></i>
+                            </span>
+                    <span class="title">Order Management</span>
+                    <span class="arrow">
+                                <i class="lni-chevron-right"></i>
+                            </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.equals('/orders/myOrders')}">class="active"</c:if>>
+                        <a href="/admin/orders/myOrders">My Order</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown <c:if test="${currentUrl.equals('/user/message')}">open</c:if>">
+                <a href="#" class="dropdown-toggle">
+                            <span class="icon-holder">
+                                <i class="lni-list"></i>
+                            </span>
+                    <span class="title">Purchase Information</span>
+                    <span class="arrow">
+                                <i class="lni-chevron-right"></i>
+                            </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li <c:if test="${currentUrl.equals('/user/message')}">class="active"</c:if>>
+                        <a href="/admin/user/message">Purchase Information</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="/admin/goods/homeGoods" class="dropdown-toggle">
+                            <span class="icon-holder">
+                                <i class="lni-home"></i>
+                            </span>
+                    <span class="title">Back to Home</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

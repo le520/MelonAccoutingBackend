@@ -1,0 +1,238 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page import="org.springframework.web.context.request.RequestContextHolder" %>
+<%@ page import="org.springframework.web.context.request.ServletRequestAttributes" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+    String currentUrl = req.getRequestURI();
+%>
+<!DOCTYPE html>
+<html>
+<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>闲置列表</title>
+    <%@ include file="../common/header.jsp" %>
+</head>
+<body>
+<div class="app header-default side-nav-dark">
+    <div class="layout">
+        <!-- 头部导航栏开始 -->
+        <%@ include file="../common/headNav.jsp" %>
+        <!-- 头部导航栏结束 -->
+        <!-- 左侧导航栏开始 -->
+        <%@ include file="../common/leftNav.jsp" %>
+        <!-- 左侧导航栏结束 -->
+        <!-- 内容页面开始 -->
+        <div class="page-container">
+
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="breadcrumb-wrapper row">
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <h4 class="page-title">My Order</h4>
+                        </div>
+                        <div class="col-12 col-lg-9 col-md-6">
+                            <ol class="breadcrumb float-right">
+                                <li><a href="<%=basePath%>goods/homeGoods">Index</a></li>
+                                <li class="active"> / My Order</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <ul class="nav nav-pills" role="tablist">
+                                        <li class="nav-item">
+                                            <a href="#nav-pills-1" class="nav-link active show" role="tab"
+                                               data-toggle="tab" aria-selected="true">Bought</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#nav-pills-2" class="nav-link" role="tab" data-toggle="tab"
+                                               aria-selected="false">Sold</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-primary">
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active show" id="nav-pills-1">
+                                                <table class="table table-hover table-lg">
+                                                    <thead>
+                                                    <tr>
+                                                        <td class="text-dark text-semibold">OrderNum</td>
+                                                        <td class="text-dark text-semibold">Name</td>
+                                                        <td class="text-dark text-semibold">Price</td>
+                                                        <td class="text-dark text-semibold">Comment</td>
+                                                        <td class="text-dark text-semibold">Lease days</td>
+                                                        <td class="text-dark text-semibold">Status</td>
+
+                                                        <td class="text-dark text-semibold">Operate</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <c:forEach var="items" items="${orders}">
+                                                        <tr>
+                                                            <td>${items.orderNum}</td>
+                                                            <td>${items.goods.name}</td>
+                                                            <td>${items.orderPrice}</td>
+                                                            <td>${items.orderInformation}</td>
+                                                            <td>
+                                                                <c:if test="${items.orderState==2}">
+                                                                    ${items.orderDate}Days
+                                                                </c:if>
+                                                                <c:if test="${items.orderState==1}">
+                                                                    Not started
+                                                                </c:if>
+                                                                <c:if test="${items.orderState==3}">
+                                                                    Ended
+                                                                </c:if>
+                                                            </td>
+                                                            <td>
+                                                                <c:if test="${items.orderState==1}">
+                                                                    <div class="badge badge-primary">Pending transaction</div>
+                                                                </c:if>
+                                                                <c:if test="${items.orderState==2}">
+                                                                    <div class="badge badge-info">Leasing</div>
+                                                                </c:if>
+                                                                <c:if test="${items.orderState==3}">
+                                                                    <div class="badge badge-success">Done</div>
+                                                                </c:if>
+                                                            </td>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <a href="javascript: void(0);"
+                                                                       class="dropdown-toggle arrow-none btn btn-light btn-sm"
+                                                                       data-toggle="dropdown" aria-expanded="false"><i
+                                                                            class="lni-more-alt"></i></a>
+                                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                                         x-placement="bottom-end"
+                                                                         style="position: absolute; transform: translate3d(32px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                        <c:if test="${items.orderState==2}">
+                                                                            <a class="dropdown-item"
+                                                                               onclick="ordersReceipt(${items.orderDate},${items.userId},${items.orderNum},${items.orderPrice},${items.goods.id})"><i
+                                                                                    class="lni-check-mark-circle mr-2 text-muted"></i>End the lease</a>
+                                                                        </c:if>
+                                                                        <c:if test="${items.orderState!=2}">
+                                                                            <i class="lni-check-mark-circle mr-2 text-muted"></i>Nothing
+                                                                        </c:if>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="nav-pills-2">
+                                                <table class="table table-hover table-lg">
+                                                    <thead>
+                                                    <tr>
+                                                        <td class="text-dark text-semibold">OrderNum</td>
+                                                        <td class="text-dark text-semibold">Name</td>
+                                                        <td class="text-dark text-semibold">Price</td>
+                                                        <td class="text-dark text-semibold">Comment</td>
+                                                        <td class="text-dark text-semibold">Lease days</td>
+                                                        <td class="text-dark text-semibold">Status</td>
+
+                                                        <td class="text-dark text-semibold">Operate</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <c:forEach var="items" items="${ordersOfSell}">
+                                                        <tr>
+                                                            <td>${items.orderNum}</td>
+                                                            <td>${items.goods.name}</td>
+                                                            <td>${items.orderPrice}</td>
+                                                            <td>${items.orderInformation}</td>
+                                                            <td>
+                                                                <c:if test="${items.orderState==2}">
+                                                                    ${items.orderDate}Days
+                                                                </c:if>
+                                                                <c:if test="${items.orderState==1}">
+                                                                    Not started
+                                                                </c:if>
+                                                                <c:if test="${items.orderState==3}">
+                                                                    Ended
+                                                                </c:if>
+                                                            </td>
+                                                            <td>
+                                                                <c:if test="${items.orderState==1}">
+                                                                    <div class="badge badge-primary">Pending transaction</div>
+                                                                </c:if>
+                                                                <c:if test="${items.orderState==2}">
+                                                                    <div class="badge badge-info">Leasing</div>
+                                                                </c:if>
+                                                                <c:if test="${items.orderState==3}">
+                                                                    <div class="badge badge-success">Done</div>
+                                                                </c:if>
+                                                            </td>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <a href="javascript: void(0);"
+                                                                       class="dropdown-toggle arrow-none btn btn-light btn-sm"
+                                                                       data-toggle="dropdown" aria-expanded="false"><i
+                                                                            class="lni-more-alt"></i></a>
+                                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                                         x-placement="bottom-end"
+                                                                         style="position: absolute; transform: translate3d(32px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                        <a class="dropdown-item"
+                                                                           onclick="ordersDeliver(${items.orderNum})"><i
+                                                                                class="lni-check-mark-circle mr-2 text-muted"></i>Confirm</a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%@ include file="../common/footer.jsp" %>
+
+        </div>
+        <!-- 内容页面结束 -->
+    </div>
+</div>
+
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+<%@ include file="../common/js.jsp" %>
+<script type="text/javascript">
+
+    function ordersDeliver(orderNum) {
+
+        location.href = '<%=basePath%>orders/deliver/' + orderNum
+
+        alert("The transaction has been confirmed and the billing begins~")
+    }
+
+    function ordersReceipt(day, userId, orderNum, orderPrice, goodsId) {
+        location.href = '<%=basePath%>orders/receipt?orderNum=' + orderNum + '&orderPrice=' + orderPrice + '&goodsId=' + goodsId + '&userId=' + userId + '&day=' + day;
+
+        alert("The transaction has been completed. Thank you for your trust~")
+    }
+
+
+</script>
+</body>
+
+<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
+</html>
