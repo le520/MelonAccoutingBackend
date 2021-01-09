@@ -19,21 +19,40 @@ import javax.validation.constraints.NotEmpty;
  * @Description: 后台用户管理控制器
  */
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @RequestMapping("/admin/index")
-    public String index() {
-        return "/admin/index";
-    }
-
-    @GetMapping("/admin/login")
+    /**
+     * 登录页面
+     *
+     * @return 登录页面
+     */
+    @GetMapping("/login")
     public String login() {
         return "/admin/login";
     }
 
-    @PostMapping("/admin/login")
+    /**
+     * 后台首页
+     *
+     * @return 后台首页
+     */
+    @RequestMapping({"/index", "/", ""})
+    public String index() {
+        return "/admin/index";
+    }
+
+    /**
+     * 登录功能
+     *
+     * @param admin              提交的参数
+     * @param session            session
+     * @param redirectAttributes 重定向参数
+     * @return 登录结果
+     */
+    @PostMapping("/login")
     public String adminLogin(@NotEmpty @Valid Admin admin, HttpSession session, RedirectAttributes redirectAttributes) {
         if (adminService.login(admin.getUserName(), admin.getPassword())) {
             session.setAttribute("userName", admin.getUserName());

@@ -3,7 +3,9 @@ package com.nwpu.melonbookkeeping.controller.api.param;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author noorall
@@ -13,6 +15,6 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class BookkeepingDeleteParam {
     @ApiModelProperty(value = "记录ID", required = true)
-    @NotEmpty(message = "记录ID不能为空")
+    @Min(1)
     private int id;
 }

@@ -1,6 +1,9 @@
 package com.nwpu.melonbookkeeping.service;
 
 import com.nwpu.melonbookkeeping.entity.Admin;
+import com.nwpu.melonbookkeeping.entity.User;
+
+import java.util.List;
 
 /**
  * @author noorall

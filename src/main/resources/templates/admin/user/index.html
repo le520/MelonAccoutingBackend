@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
+<head th:replace="common/head::head"></head>
+<body>
+<div class="app header-default side-nav-dark">
+    <div class="layout">
+        <div th:replace="common/head-nav::head-nav"></div>
+
+        <div th:replace="common/side-nav::side-nav"></div>
+
+        <div class="page-container">
+
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="breadcrumb-wrapper row">
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <h4 class="page-title">用户列表</h4>
+                        </div>
+                        <div class="col-12 col-lg-9 col-md-6">
+                            <ol class="breadcrumb float-right">
+                                <li><a href="user">用户管理</a></li>
+                                <li class="active"> / 用户列表</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-title">用户列表</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <div id="datatable_wrapper"
+                                             class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table id="datatable"
+                                                           class="table table-bordered dataTable no-footer" role="grid"
+                                                           aria-describedby="datatable_info">
+                                                        <thead>
+                                                        <tr role="row">
+                                                            <th>ID</th>
+                                                            <th>用户名</th>
+                                                            <th>昵称</th>
+                                                            <th>状态</th>
+                                                            <th>注册时间</th>
+                                                            <th>最后登录</th>
+                                                            <th>操作</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr role="row" th:each="user:${userList}">
+                                                            <td th:text="${'#'+user.getId()}">
+                                                                #ODN84952
+                                                            </td>
+                                                            <td th:text="${user.getUserName()}">John Doe</td>
+                                                            <td th:text="${user.getNickName()}">John</td>
+                                                            <td th:switch="${user.getStatus()}">
+                                                                <p th:case="0" class="badge badge-danger">异常</p>
+                                                                <p th:case="1" class="badge badge-success">正常</p>
+                                                            </td>
+                                                            <td th:text="${user.getRegisterTime()}">25/07/2018</td>
+                                                            <td th:text="${user.getLastLoginTime()}">25/07/2018</td>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <a href="javascript: void(0);"
+                                                                       class="dropdown-toggle arrow-none btn btn-light btn-sm"
+                                                                       data-toggle="dropdown" aria-expanded="false"><i
+                                                                            class="lni-more-alt"></i></a>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#"><i
+                                                                                class="lni-pencil mr-2 text-muted"></i>修改用户</a>
+                                                                        <a class="dropdown-item" href="#"><i
+                                                                                class="lni-trash mr-2 text-muted"></i>删除用户</a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+
+
+                </div>
+            </div>
+
+
+            <footer th:replace="common/footer::footer">
+            </footer>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+
+
+<script th:src="@{/static/admin/assets/js/jquery-min.js}"></script>
+<script th:src="@{/static/admin/assets/js/popper.min.js}"></script>
+<script th:src="@{/static/admin/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/admin/assets/js/jquery.app.js}"></script>
+<script th:src="@{/static/admin/assets/js/main.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.buttons.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.bootstrap4.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/jszip.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/pdfmake.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/vfs_fonts.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.html5.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.print.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.colVis.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.responsive.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/responsive.bootstrap4.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/js/datatables.init.js}"></script>
+
+</body>
+</html>

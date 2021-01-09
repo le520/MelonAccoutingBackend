@@ -24,12 +24,11 @@ public class Result<T> implements Serializable {
 
     /**
      * Construct successful result
-     *
-     * @param data the data for result
      */
     public Result() {
         this.success = true;
     }
+
     /**
      * Construct error result
      *

@@ -9,7 +9,7 @@ import java.sql.Date;
 @Data
 @Table(name = "user")
 public class User {
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_id")
     private int id;

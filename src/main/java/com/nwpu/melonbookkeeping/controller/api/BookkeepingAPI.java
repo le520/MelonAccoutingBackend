@@ -40,7 +40,12 @@ public class BookkeepingAPI {
         } else {
             List<BookkeepingVO> bookkeepingVOList = new ArrayList<>();
             List<Bookkeeping> bookkeepingList = bookkeepingService.getAllBookkeepingByUser(user);
-            BeanUtils.copyProperties(bookkeepingList, bookkeepingVOList);
+            //坑 不支持直接复制List
+            for (Bookkeeping bookkeeping : bookkeepingList) {
+                BookkeepingVO bookkeepingVO = new BookkeepingVO();
+                BeanUtils.copyProperties(bookkeeping, bookkeepingVO);
+                bookkeepingVOList.add(bookkeepingVO);
+            }
             result = new Result<>(bookkeepingVOList);
         }
         return result;
