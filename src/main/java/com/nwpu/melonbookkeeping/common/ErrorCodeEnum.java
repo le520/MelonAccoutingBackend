@@ -3,7 +3,9 @@ package com.nwpu.melonbookkeeping.common;
 public enum ErrorCodeEnum {
     USER_LOGIN_ERROR_UNAUTHORIZED("20001", "LoginName or password error."),
     USER_LOGIN_ERROR_LOCKED("20002", "User has been locked."),
-    USER_TOKEN_INVALID("20003", "Invalid token information.");
+    USER_TOKEN_INVALID("20003", "Invalid token information."),
+    BOOKKEEPING_ADD_ERROR("20004", "Illegal parameter."),
+    BOOKKEEPING_DELETE_ERROR("20005","Illegal parameter.");
 
     private final String[] error = new String[2];
 
