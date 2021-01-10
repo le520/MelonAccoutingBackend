@@ -25,11 +25,11 @@ public class UserController {
     public String index(Model model) {
         List<User> userList = userService.getAllUser();
         model.addAttribute("userList", userList);
-        return "/admin/user/index";
+        return "admin/user/index";
     }
 
     @RequestMapping("/test")
     public String test(Model model) {
-        return "/admin/user/data-table";
+        return "admin/user/data-table";
     }
 }

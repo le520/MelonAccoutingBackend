@@ -5,7 +5,9 @@ public enum ErrorCodeEnum {
     USER_LOGIN_ERROR_LOCKED("20002", "User has been locked."),
     USER_TOKEN_INVALID("20003", "Invalid token information."),
     BOOKKEEPING_ADD_ERROR("20004", "Illegal parameter."),
-    BOOKKEEPING_DELETE_ERROR("20005","Illegal parameter.");
+    BOOKKEEPING_DELETE_ERROR("20005","Illegal parameter."),
+    USER_REGISTER_ERROR("20006","Illegal parameter."),
+    USER_MODIFY_ERROR("20007","Illegal parameter.");
 
     private final String[] error = new String[2];
 

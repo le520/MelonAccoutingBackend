@@ -31,7 +31,7 @@ public class AdminController {
      */
     @GetMapping("/login")
     public String login() {
-        return "/admin/login";
+        return "admin/login";
     }
 
     /**
@@ -41,7 +41,7 @@ public class AdminController {
      */
     @RequestMapping({"/index", "/", ""})
     public String index() {
-        return "/admin/index";
+        return "admin/index";
     }
 
     /**

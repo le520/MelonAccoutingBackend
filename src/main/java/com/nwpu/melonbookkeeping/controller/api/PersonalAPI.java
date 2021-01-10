@@ -4,6 +4,7 @@ import com.nwpu.melonbookkeeping.common.ErrorCodeEnum;
 import com.nwpu.melonbookkeeping.config.annotation.TokenToUser;
 import com.nwpu.melonbookkeeping.controller.api.ov.UserInfoVO;
 import com.nwpu.melonbookkeeping.controller.api.param.UserLoginParam;
+import com.nwpu.melonbookkeeping.controller.api.param.UserModifyParam;
 import com.nwpu.melonbookkeeping.controller.api.param.UserRegisterParam;
 import com.nwpu.melonbookkeeping.entity.User;
 import com.nwpu.melonbookkeeping.service.UserService;
@@ -61,7 +62,30 @@ public class PersonalAPI {
     @ApiOperation(value = "用户注册", notes = "返回注册结果")
     @PostMapping("/user/register")
     public Result<String> register(@RequestBody @Valid UserRegisterParam userRegisterParam) {
-        return null;
+        User user = new User();
+        BeanUtils.copyProperties(userRegisterParam,user);
+        Result<String> result;
+        if(userService.register(user)){
+            result=new Result<>();
+        }else{
+            result=new Result<>(ErrorCodeEnum.USER_REGISTER_ERROR.getError());
+        }
+        return result;
     }
 
+    @ApiOperation(value="修改信息",notes = "修改用户信息，包含头像")
+    @PostMapping("/user/modify")
+    public Result<String> modify(@TokenToUser User user, @RequestBody @Valid UserModifyParam userModifyParam){
+        Result<String> result;
+        if (user == null) {
+            result = new Result<>(ErrorCodeEnum.USER_TOKEN_INVALID.getError());
+        } else {
+            if(userService.modify(user,userModifyParam)){
+                result=new Result<>();
+            }else{
+                result=new Result<>(ErrorCodeEnum.USER_MODIFY_ERROR.getError());
+            }
+        }
+        return result;
+    }
 }

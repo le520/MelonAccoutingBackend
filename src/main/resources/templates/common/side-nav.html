@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="side-nav expand-lg" th:fragment="side-nav">
+    <div class="side-nav-inner">
+        <ul class="side-nav-menu">
+            <li class="side-nav-header">
+                <span>导航栏</span>
+            </li>
+            <li th:class="'nav-item dropdown ' + (${#httpServletRequest.getRequestURI().startsWith('/admin/index')}?'open':'')">
+                <a href="#" class="dropdown-toggle">
+                        <span class="icon-holder">
+                        <i class="lni-dashboard"></i>
+                        </span>
+                    <span class="title">仪表盘</span>
+                    <span class="arrow">
+                        <i class="lni-chevron-right"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li th:class="${#httpServletRequest.getRequestURI().equals('/admin/index')}?'active':''">
+                        <a href="index">概览</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown" th:class="'nav-item dropdown ' + (${#httpServletRequest.getRequestURI().startsWith('/admin/user')}?'open':'')">
+                <a class="dropdown-toggle" href="#">
+                    <span class="icon-holder">
+                    <i class="lni-users"></i>
+                    </span>
+                    <span class="title">用户管理</span>
+                    <span class="arrow">
+                        <i class="lni-chevron-right"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li th:class="${#httpServletRequest.getRequestURI().equals('/admin/user')}?'active':''">
+                        <a href="user">用户列表</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</html>
