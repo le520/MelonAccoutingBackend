@@ -1,14 +1,10 @@
-package com.nwpu.melonbookkeeping.controller.api.ov;
+package com.nwpu.melonbookkeeping.controller.api.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Past;
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 /**

@@ -2,7 +2,7 @@ package com.nwpu.melonbookkeeping.controller.api;
 
 import com.nwpu.melonbookkeeping.common.ErrorCodeEnum;
 import com.nwpu.melonbookkeeping.config.annotation.TokenToUser;
-import com.nwpu.melonbookkeeping.controller.api.ov.UserInfoVO;
+import com.nwpu.melonbookkeeping.controller.api.vo.UserInfoVO;
 import com.nwpu.melonbookkeeping.controller.api.param.UserLoginParam;
 import com.nwpu.melonbookkeeping.controller.api.param.UserModifyParam;
 import com.nwpu.melonbookkeeping.controller.api.param.UserRegisterParam;

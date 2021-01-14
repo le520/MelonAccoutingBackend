@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ * Admin 实体类
+ */
 @Entity
 @Data
 @Table(name = "admin")

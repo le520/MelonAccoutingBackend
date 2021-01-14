@@ -6,6 +6,9 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * 用户实体类
+ */
 @Entity
 @Data
 @Table(name = "user")

@@ -2,7 +2,7 @@ package com.nwpu.melonbookkeeping.controller.api;
 
 import com.nwpu.melonbookkeeping.common.ErrorCodeEnum;
 import com.nwpu.melonbookkeeping.config.annotation.TokenToUser;
-import com.nwpu.melonbookkeeping.controller.api.ov.AppInfoVO;
+import com.nwpu.melonbookkeeping.controller.api.vo.AppInfoVO;
 import com.nwpu.melonbookkeeping.controller.api.param.FeedbackParam;
 import com.nwpu.melonbookkeeping.entity.App;
 import com.nwpu.melonbookkeeping.entity.Feedback;
@@ -14,7 +14,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

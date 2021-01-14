@@ -22,11 +22,21 @@ public class BookkeepingServiceImpl implements BookkeepingService {
     @Autowired
     BookkeepingRepository bookkeepingRepository;
 
+    /**
+     * 通过用户获取所有记录
+     * @param user 记录的所有者
+     * @return 所有者的所有记录
+     */
     @Override
     public List<Bookkeeping> getAllBookkeepingByUser(User user) {
         return bookkeepingRepository.findAllByUser(user);
     }
 
+    /**
+     * 添加一个记录
+     * @param bookkeeping 记录信息
+     * @return 添加记录的id
+     */
     @Override
     public int addOneBookkeeping(Bookkeeping bookkeeping) {
         int id = -1;
@@ -38,6 +48,12 @@ public class BookkeepingServiceImpl implements BookkeepingService {
         return id;
     }
 
+    /**
+     * 通过User和ID删除记录
+     * @param id 记录的id
+     * @param user 记录持有者
+     * @return 删除结果
+     */
     @Override
     public boolean deleteBookkeepingByIdAndUser(int id, User user) {
         if (bookkeepingRepository.findByIdAndUser(id, user) == null) {

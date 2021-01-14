@@ -27,7 +27,7 @@ public class FeedbackController {
     /**
      * 反馈首页
      *
-     * @param model
+     * @param model model
      * @return 反馈页面视图
      */
     @RequestMapping({"/", "index", ""})
@@ -41,7 +41,7 @@ public class FeedbackController {
      * 反馈修改
      *
      * @param id                 反馈ID
-     * @param redirectAttributes
+     * @param redirectAttributes 重定向参数，反馈修改结果
      * @return 将反馈修改为已读后返回上一页，并设置回执参数
      */
     @RequestMapping("/modify/{id}")
@@ -59,7 +59,7 @@ public class FeedbackController {
      * 查看反馈详情
      *
      * @param id    反馈ID
-     * @param model
+     * @param model model
      * @return 详情页面
      */
     @RequestMapping("/details/{id}")

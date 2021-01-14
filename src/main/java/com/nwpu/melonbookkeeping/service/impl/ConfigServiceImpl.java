@@ -30,6 +30,10 @@ public class ConfigServiceImpl implements ConfigService {
     @Autowired
     WebApplicationConfig webApplicationConfig;
 
+    /**
+     * 获取所有配置项
+     * @return 所有配置项
+     */
     @Override
     public Map<String, String> getWebConfig() {
         Map<String, String> webConfig = new HashMap<>();
@@ -40,6 +44,11 @@ public class ConfigServiceImpl implements ConfigService {
         return webConfig;
     }
 
+    /**
+     * 保存配置项
+     * @param configs 配置的参数
+     * @return 保存结果
+     */
     @Override
     public boolean saveWebConfig(Map<String, String> configs) {
         try {
@@ -57,6 +66,9 @@ public class ConfigServiceImpl implements ConfigService {
         }
     }
 
+    /**
+     * 更新API计数器
+     */
     @Override
     public void updateApiCallsCount() {
         try {

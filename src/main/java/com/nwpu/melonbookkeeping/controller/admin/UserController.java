@@ -33,7 +33,7 @@ public class UserController {
     /**
      * 用户首页
      *
-     * @param model
+     * @param model model
      * @return 用户首页
      */
     @RequestMapping({"/", "/index", ""})
@@ -47,7 +47,7 @@ public class UserController {
     /**
      * 用户修改详情
      *
-     * @param model
+     * @param model model
      * @param id    用户id
      * @return 用户修改页面
      */
@@ -66,7 +66,7 @@ public class UserController {
      * 用户修改
      *
      * @param user               用户信息
-     * @param redirectAttributes
+     * @param redirectAttributes 重定向参数，反馈修改结果
      * @return 修改结果
      */
     @PostMapping("/modify")
@@ -84,10 +84,5 @@ public class UserController {
             }
             return "redirect:/admin/user/index";
         }
-    }
-
-    @RequestMapping("/test")
-    public String test(Model model) {
-        return "admin/user/data-table";
     }
 }

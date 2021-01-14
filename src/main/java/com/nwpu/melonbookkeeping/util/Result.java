@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * json反馈结果构造器
+ * @param <T>
+ */
 @Data
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;

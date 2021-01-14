@@ -14,6 +14,14 @@ import javax.servlet.http.HttpSession;
  */
 @Component
 public class AdminHandlerInterceptor implements HandlerInterceptor {
+    /**
+     * 后台拦截器
+     * @param request request
+     * @param response response
+     * @param handler handler
+     * @return 配置结果
+     * @throws Exception
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();

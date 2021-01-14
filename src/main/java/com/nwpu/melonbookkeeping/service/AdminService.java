@@ -1,10 +1,6 @@
 package com.nwpu.melonbookkeeping.service;
 
-import com.nwpu.melonbookkeeping.controller.admin.ov.AdminIndexOV;
-import com.nwpu.melonbookkeeping.entity.Admin;
-import com.nwpu.melonbookkeeping.entity.User;
-
-import java.util.List;
+import com.nwpu.melonbookkeeping.controller.admin.vo.AdminIndexVO;
 
 /**
  * @author noorall
@@ -16,5 +12,5 @@ public interface AdminService {
 
     boolean modifyAdminPassword(String password);
 
-    AdminIndexOV getIndexOv();
+    AdminIndexVO getIndexVO();
 }

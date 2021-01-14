@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ * 设置实体类
+ */
 @Entity
 @Data
 @Table(name = "config")

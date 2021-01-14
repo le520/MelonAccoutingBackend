@@ -1,12 +1,10 @@
 package com.nwpu.melonbookkeeping.controller.admin;
 
 import com.nwpu.melonbookkeeping.entity.Admin;
-import com.nwpu.melonbookkeeping.entity.Feedback;
 import com.nwpu.melonbookkeeping.service.AdminService;
 import com.nwpu.melonbookkeeping.service.FeedbackService;
 import com.nwpu.melonbookkeeping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +50,7 @@ public class AdminController {
     public String index(Model model, HttpSession session) {
         session.setAttribute("unRead", feedbackService.getUNReadCount());
         model.addAttribute("mirrorsData", userService.getUserMirrorsData());
-        model.addAttribute("indexData", adminService.getIndexOv());
+        model.addAttribute("indexData", adminService.getIndexVO());
         return "admin/index";
     }
 

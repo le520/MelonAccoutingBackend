@@ -1,6 +1,6 @@
 package com.nwpu.melonbookkeeping.service;
 
-import com.nwpu.melonbookkeeping.controller.admin.ov.MirrorsDataOV;
+import com.nwpu.melonbookkeeping.controller.admin.vo.MirrorsDataVO;
 import com.nwpu.melonbookkeeping.controller.api.param.UserModifyParam;
 import com.nwpu.melonbookkeeping.entity.User;
 
@@ -17,7 +17,7 @@ public interface UserService {
 
     boolean modify(User user, UserModifyParam userModifyParam);
 
-    List<MirrorsDataOV> getUserMirrorsData();
+    List<MirrorsDataVO> getUserMirrorsData();
 
     void updateLastLoginTime(User user);
 

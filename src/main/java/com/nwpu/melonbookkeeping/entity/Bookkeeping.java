@@ -6,6 +6,9 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * 记账记录实体类
+ */
 @Entity
 @Data
 @Table(name = "bookkeeping")

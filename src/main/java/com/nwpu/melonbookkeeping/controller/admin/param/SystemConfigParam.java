@@ -9,7 +9,10 @@ import lombok.Data;
  */
 @Data
 public class SystemConfigParam {
+    //网站标题
     private String webTitle;
+    //网站描述
     private String webDescription;
+    //网站邮箱
     private String email;
 }

@@ -2,8 +2,8 @@ package com.nwpu.melonbookkeeping.controller.api;
 
 import com.nwpu.melonbookkeeping.common.ErrorCodeEnum;
 import com.nwpu.melonbookkeeping.config.annotation.TokenToUser;
-import com.nwpu.melonbookkeeping.controller.api.ov.BookkeepingAddVO;
-import com.nwpu.melonbookkeeping.controller.api.ov.BookkeepingVO;
+import com.nwpu.melonbookkeeping.controller.api.vo.BookkeepingAddVO;
+import com.nwpu.melonbookkeeping.controller.api.vo.BookkeepingVO;
 import com.nwpu.melonbookkeeping.controller.api.param.BookkeepingAddParam;
 import com.nwpu.melonbookkeeping.controller.api.param.BookkeepingDeleteParam;
 import com.nwpu.melonbookkeeping.entity.Bookkeeping;

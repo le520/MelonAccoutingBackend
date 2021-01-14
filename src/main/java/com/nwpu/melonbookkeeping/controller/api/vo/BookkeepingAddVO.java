@@ -1,4 +1,4 @@
-package com.nwpu.melonbookkeeping.controller.api.ov;
+package com.nwpu.melonbookkeeping.controller.api.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

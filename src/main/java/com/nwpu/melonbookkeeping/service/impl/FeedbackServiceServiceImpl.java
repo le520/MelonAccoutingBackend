@@ -22,6 +22,11 @@ public class FeedbackServiceServiceImpl implements FeedbackService {
     @Autowired
     FeedbackRepository feedbackRepository;
 
+    /**
+     * 添加一个反馈
+     * @param feedback 反馈信息
+     * @return 是否添加成功
+     */
     @Override
     public boolean addFeedback(Feedback feedback) {
         try {
@@ -33,11 +38,20 @@ public class FeedbackServiceServiceImpl implements FeedbackService {
         }
     }
 
+    /**
+     * 获取所有反馈
+     * @return 一个反馈的列表
+     */
     @Override
     public List<Feedback> getAllFeedback() {
         return feedbackRepository.findAll(Sort.by("isRead"));
     }
 
+    /**
+     * 将反馈设置为已读
+     * @param id 要设置的id
+     * @return 设置的结果
+     */
     @Override
     public boolean setReadById(int id) {
         Feedback feedback = feedbackRepository.getFeedbackById(id);
@@ -54,11 +68,20 @@ public class FeedbackServiceServiceImpl implements FeedbackService {
         }
     }
 
+    /**
+     * 通过id获取反馈信息
+     * @param id 反馈的id
+     * @return 反馈信息
+     */
     @Override
     public Feedback getFeedbackById(int id) {
         return feedbackRepository.getFeedbackById(id);
     }
 
+    /**
+     * 获取所有未读的条数
+     * @return 未读的信息条数
+     */
     @Override
     public int getUNReadCount() {
         return feedbackRepository.countFeedbacksByIsRead(0);

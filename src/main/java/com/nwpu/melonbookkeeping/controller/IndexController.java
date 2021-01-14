@@ -10,10 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class IndexController {
+    /**
+     * 全站首页
+     * @return 首页
+     */
     @RequestMapping("/")
     public String index(){
         return "index";
     }
+
+    /**
+     * API页面
+     * @return api页面
+     */
     @RequestMapping("/api")
     public String api(){
         return "api";
