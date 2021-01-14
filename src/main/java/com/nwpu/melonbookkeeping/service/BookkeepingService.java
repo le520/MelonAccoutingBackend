@@ -13,7 +13,7 @@ import java.util.List;
 public interface BookkeepingService {
     List<Bookkeeping> getAllBookkeepingByUser(User user);
 
-    boolean addOneBookkeeping(Bookkeeping bookkeeping);
+    int addOneBookkeeping(Bookkeeping bookkeeping);
 
     boolean deleteBookkeepingByIdAndUser(int id, User user);
 }

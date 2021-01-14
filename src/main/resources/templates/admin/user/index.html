@@ -31,6 +31,25 @@
                                 <div class="card-header border-bottom">
                                     <h4 class="card-title">用户列表</h4>
                                 </div>
+                                <div class="alert-box">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                         th:unless="${#strings.isEmpty(error)}">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong>糟糕!</strong>
+                                        <p th:text="${error}">用户名或密码错误，请重试!</p>
+                                    </div>
+                                </div>
+                                <div class="alert-box">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                         th:unless="${#strings.isEmpty(success)}">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong>修改成功！</strong>
+                                    </div>
+                                </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <div id="datatable_wrapper"
@@ -53,7 +72,7 @@
                                                         </thead>
                                                         <tbody>
                                                         <tr role="row" th:each="user:${userList}">
-                                                            <td th:text="${'#'+user.getId()}">
+                                                            <td th:text="${user.getId()}">
                                                                 #ODN84952
                                                             </td>
                                                             <td th:text="${user.getUserName()}">John Doe</td>
@@ -71,10 +90,9 @@
                                                                        data-toggle="dropdown" aria-expanded="false"><i
                                                                             class="lni-more-alt"></i></a>
                                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a class="dropdown-item" href="#"><i
+                                                                        <a class="dropdown-item"
+                                                                           th:href="${'/admin/user/modify/'+user.getId()}"><i
                                                                                 class="lni-pencil mr-2 text-muted"></i>修改用户</a>
-                                                                        <a class="dropdown-item" href="#"><i
-                                                                                class="lni-trash mr-2 text-muted"></i>删除用户</a>
                                                                     </div>
                                                                 </div>
                                                             </td>

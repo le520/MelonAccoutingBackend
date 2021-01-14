@@ -28,18 +28,19 @@ public class BookkeepingServiceImpl implements BookkeepingService {
     }
 
     @Override
-    public boolean addOneBookkeeping(Bookkeeping bookkeeping) {
+    public int addOneBookkeeping(Bookkeeping bookkeeping) {
+        int id = -1;
         try {
-            bookkeepingRepository.saveAndFlush(bookkeeping);
+            id = bookkeepingRepository.saveAndFlush(bookkeeping).getId();
         } catch (Exception e) {
-            return false;
+            return -1;
         }
-        return true;
+        return id;
     }
 
     @Override
     public boolean deleteBookkeepingByIdAndUser(int id, User user) {
-        if(bookkeepingRepository.findByIdAndUser(id,user)==null){
+        if (bookkeepingRepository.findByIdAndUser(id, user) == null) {
             return false;
         }
         try {

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
+<head th:replace="common/head::head"></head>
+<body>
+<div class="app header-default side-nav-dark">
+    <div class="layout">
+        <div th:replace="common/head-nav::head-nav"></div>
+
+        <div th:replace="common/side-nav::side-nav"></div>
+
+        <div class="page-container">
+
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="breadcrumb-wrapper row">
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <h4 class="page-title">系统配置</h4>
+                        </div>
+                        <div class="col-12 col-lg-9 col-md-6">
+                            <ol class="breadcrumb float-right">
+                                <li><a href="/admin/config">系统管理</a></li>
+                                <li class="active"> / 系统配置</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-xs-12">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-title">网站配置</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form class="forms-sample" action="/admin/config/modify/system" method="post">
+                                        <div class="alert-box">
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                                 th:unless="${#strings.isEmpty(systemError)}">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>修改失败!</strong> 数据保存出现了错误！
+                                            </div>
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                                 th:unless="${#strings.isEmpty(systemSuccess)}">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>修改成功!</strong>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="webTitle">网站名称</label>
+                                            <input type="text" class="form-control" id="webTitle" name="webTitle"
+                                                   th:value="${webTitle}" placeholder="WebTitle">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="webDescription">网站描述</label>
+                                            <input type="text" class="form-control" id="webDescription"
+                                                   name="webDescription" th:value="${webDescription}"
+                                                   placeholder="WebDescription">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">邮箱地址</label>
+                                            <input type="email" class="form-control" id="email" th:value="${email}"
+                                                   name="email" placeholder="Email">
+                                        </div>
+                                        <button type="submit" class="btn btn-common mr-3">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-xs-12">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-title">后台配置</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form class="forms-sample" method="post" action="/admin/config/modify/admin">
+                                        <div class="alert-box">
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                                 th:unless="${#strings.isEmpty(adminError)}">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>修改失败!</strong> 两次密码不一样！
+                                            </div>
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                                 th:unless="${#strings.isEmpty(adminSuccess)}">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>修改成功!</strong>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">后台密码</label>
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                   placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirmPassword">确认密码</label>
+                                            <input type="password" class="form-control" id="confirmPassword"
+                                                   name="confirmPassword" placeholder="Password">
+                                        </div>
+                                        <button type="submit" class="btn btn-common mr-3">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+
+
+                </div>
+            </div>
+
+
+            <footer th:replace="common/footer::footer">
+            </footer>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+
+
+<script th:src="@{/static/admin/assets/js/jquery-min.js}"></script>
+<script th:src="@{/static/admin/assets/js/popper.min.js}"></script>
+<script th:src="@{/static/admin/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/admin/assets/js/jquery.app.js}"></script>
+<script th:src="@{/static/admin/assets/js/main.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.buttons.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.bootstrap4.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/jszip.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/pdfmake.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/vfs_fonts.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.html5.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.print.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.colVis.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.responsive.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/responsive.bootstrap4.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/js/datatables.init.js}"></script>
+
+</body>
+</html>

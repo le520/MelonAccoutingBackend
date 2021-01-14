@@ -17,11 +17,12 @@
                 </a>
                 <ul class="dropdown-menu sub-down">
                     <li th:class="${#httpServletRequest.getRequestURI().equals('/admin/index')}?'active':''">
-                        <a href="index">概览</a>
+                        <a href="/admin/index">概览</a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item dropdown" th:class="'nav-item dropdown ' + (${#httpServletRequest.getRequestURI().startsWith('/admin/user')}?'open':'')">
+            <li class="nav-item dropdown"
+                th:class="'nav-item dropdown ' + (${#httpServletRequest.getRequestURI().startsWith('/admin/user')}?'open':'')">
                 <a class="dropdown-toggle" href="#">
                     <span class="icon-holder">
                     <i class="lni-users"></i>
@@ -32,8 +33,64 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu sub-down">
-                    <li th:class="${#httpServletRequest.getRequestURI().equals('/admin/user')}?'active':''">
-                        <a href="user">用户列表</a>
+                    <li th:class="${#httpServletRequest.getRequestURI().startsWith('/admin/user')}?'active':''">
+                        <a href="/admin/user/">用户列表</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown"
+                th:class="'nav-item dropdown ' + (${#httpServletRequest.getRequestURI().startsWith('/admin/app')}?'open':'')">
+                <a class="dropdown-toggle" href="#">
+                    <span class="icon-holder">
+                    <i class="lni-playstore"></i>
+                    </span>
+                    <span class="title">版本控制</span>
+                    <span class="arrow">
+                        <i class="lni-chevron-right"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li th:class="${#httpServletRequest.getRequestURI().equals('/admin/app')}?'active':''">
+                        <a href="/admin/app">版本列表</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                    <li th:class="${#httpServletRequest.getRequestURI().equals('/admin/app/add')}?'active':''">
+                        <a href="/admin/app/add">添加版本</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown"
+                th:class="'nav-item dropdown ' + (${#httpServletRequest.getRequestURI().startsWith('/admin/feedback')}?'open':'')">
+                <a class="dropdown-toggle" href="#">
+                    <span class="icon-holder">
+                    <i class="lni-bubble"></i>
+                    </span>
+                    <span class="title">反馈管理</span>
+                    <span class="arrow">
+                        <i class="lni-chevron-right"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li th:class="${#httpServletRequest.getRequestURI().startsWith('/admin/feedback')}?'active':''">
+                        <a href="/admin/feedback">反馈列表</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown"
+                th:class="'nav-item dropdown ' + (${#httpServletRequest.getRequestURI().startsWith('/admin/config')}?'open':'')">
+                <a class="dropdown-toggle" href="#">
+                    <span class="icon-holder">
+                    <i class="lni-cog"></i>
+                    </span>
+                    <span class="title">系统管理</span>
+                    <span class="arrow">
+                        <i class="lni-chevron-right"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu sub-down">
+                    <li th:class="${#httpServletRequest.getRequestURI().equals('/admin/config')}?'active':''">
+                        <a href="/admin/config">系统配置</a>
                     </li>
                 </ul>
             </li>

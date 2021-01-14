@@ -40,26 +40,21 @@
                     </li>
                     <li role="separator" class="divider"></li>
                     <li>
-                        <a href="#">
+                        <a href="/admin/config">
                             <i class="lni-cog"></i>
-                            <span>Setting</span>
+                            <span>系统设置</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="lni-user"></i>
-                            <span>Profile</span>
+                        <a href="/admin/feedback">
+                            <i class="lni-bubble"></i>
+                            <span>用户反馈</span>
+                            <span th:if="${#httpSession.getAttribute('unRead')!=0}" class="badge badge-pill
+                            badge-primary pull-right" th:text="${#httpSession.getAttribute('unRead')}">2</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="lni-envelope"></i>
-                            <span>Inbox</span>
-                            <span class="badge badge-pill badge-primary pull-right">2</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
+                        <a href="/admin/logout">
                             <i class="lni-lock"></i>
                             <span>Logout</span>
                         </a>

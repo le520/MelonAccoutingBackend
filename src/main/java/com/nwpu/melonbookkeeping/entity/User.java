@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -12,7 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_id")
-    private int id;
+    private Integer id;
 
     @Column(name = "user_name")
     private String userName;
@@ -29,14 +30,14 @@ public class User {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "status")
-    private int status;
+    @Column(name = "status", columnDefinition = "int default 1")
+    private Integer status = 1;
 
     @Column(name = "register_time")
-    private Date registerTime;
+    private Timestamp registerTime;
 
     @Column(name = "last_login_time")
-    private Date lastLoginTime;
+    private Timestamp lastLoginTime;
 
     @Column(name = "access_token")
     private String accessToken;

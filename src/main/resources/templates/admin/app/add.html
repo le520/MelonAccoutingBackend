@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
+<head th:replace="common/head::head"></head>
+<body>
+<div class="app header-default side-nav-dark">
+    <div class="layout">
+        <div th:replace="common/head-nav::head-nav"></div>
+
+        <div th:replace="common/side-nav::side-nav"></div>
+
+        <div class="page-container">
+
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="breadcrumb-wrapper row">
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <h4 class="page-title">添加版本</h4>
+                        </div>
+                        <div class="col-12 col-lg-9 col-md-6">
+                            <ol class="breadcrumb float-right">
+                                <li><a href="/admin/app">版本控制</a></li>
+                                <li class="active"> / 添加版本</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 grid-margin">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-title">添加版本</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form-sample" action="/admin/app/add" method="post">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">版本号</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="number" readonly name="version" th:value="${appVersion}" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">版本信息</label>
+                                                    <div class="col-sm-12">
+                                                        <textarea rows="3" cols="20" name="info" type="text" class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-common mr-3">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+
+
+                </div>
+            </div>
+
+
+            <footer th:replace="common/footer::footer">
+            </footer>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+
+
+<script th:src="@{/static/admin/assets/js/jquery-min.js}"></script>
+<script th:src="@{/static/admin/assets/js/popper.min.js}"></script>
+<script th:src="@{/static/admin/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/admin/assets/js/jquery.app.js}"></script>
+<script th:src="@{/static/admin/assets/js/main.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.buttons.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.bootstrap4.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/jszip.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/pdfmake.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/vfs_fonts.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.html5.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.print.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.colVis.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.responsive.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/responsive.bootstrap4.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/js/datatables.init.js}"></script>
+
+</body>
+</html>

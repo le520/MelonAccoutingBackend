@@ -25,6 +25,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * API文档生成配置
+ */
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {

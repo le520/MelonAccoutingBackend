@@ -2,6 +2,7 @@ package com.nwpu.melonbookkeeping.controller.api;
 
 import com.nwpu.melonbookkeeping.common.ErrorCodeEnum;
 import com.nwpu.melonbookkeeping.config.annotation.TokenToUser;
+import com.nwpu.melonbookkeeping.controller.api.ov.BookkeepingAddVO;
 import com.nwpu.melonbookkeeping.controller.api.ov.BookkeepingVO;
 import com.nwpu.melonbookkeeping.controller.api.param.BookkeepingAddParam;
 import com.nwpu.melonbookkeeping.controller.api.param.BookkeepingDeleteParam;
@@ -44,6 +45,7 @@ public class BookkeepingAPI {
             for (Bookkeeping bookkeeping : bookkeepingList) {
                 BookkeepingVO bookkeepingVO = new BookkeepingVO();
                 BeanUtils.copyProperties(bookkeeping, bookkeepingVO);
+                bookkeepingVO.setRemoteId(bookkeeping.getId());
                 bookkeepingVOList.add(bookkeepingVO);
             }
             result = new Result<>(bookkeepingVOList);
@@ -53,16 +55,19 @@ public class BookkeepingAPI {
 
     @ApiOperation(value = "新增记账记录", notes = "新增用户的记账记录")
     @PostMapping("/bookkeeping/addOne")
-    public Result<String> addOne(@TokenToUser User user, @RequestBody @Valid BookkeepingAddParam bookkeepingAddParam) {
-        Result<String> result;
+    public Result<BookkeepingAddVO> addOne(@TokenToUser User user, @RequestBody @Valid BookkeepingAddParam bookkeepingAddParam) {
+        Result<BookkeepingAddVO> result;
         if (user == null) {
             result = new Result<>(ErrorCodeEnum.USER_TOKEN_INVALID.getError());
         } else {
             Bookkeeping bookkeeping = new Bookkeeping();
             BeanUtils.copyProperties(bookkeepingAddParam, bookkeeping);
             bookkeeping.setUser(user);
-            if (bookkeepingService.addOneBookkeeping(bookkeeping)) {
-                result = new Result<>();
+            int remoteId = bookkeepingService.addOneBookkeeping(bookkeeping);
+            if (remoteId != -1) {
+                BookkeepingAddVO bookkeepingAddVO = new BookkeepingAddVO();
+                bookkeepingAddVO.setRemoteId(remoteId);
+                result = new Result<>(bookkeepingAddVO);
             } else {
                 result = new Result<>(ErrorCodeEnum.BOOKKEEPING_ADD_ERROR.getError());
             }

@@ -8,6 +8,7 @@ import com.nwpu.melonbookkeeping.controller.api.param.UserModifyParam;
 import com.nwpu.melonbookkeeping.controller.api.param.UserRegisterParam;
 import com.nwpu.melonbookkeeping.entity.User;
 import com.nwpu.melonbookkeeping.service.UserService;
+import com.nwpu.melonbookkeeping.util.ImageProcess;
 import com.nwpu.melonbookkeeping.util.Result;
 import com.nwpu.melonbookkeeping.util.TokenProvider;
 import io.swagger.annotations.Api;
@@ -36,8 +37,12 @@ public class PersonalAPI {
             if (user.getStatus() == 0) {
                 result = new Result<>(ErrorCodeEnum.USER_LOGIN_ERROR_LOCKED.getError());
             } else {
+                userService.updateLastLoginTime(user);
                 UserInfoVO userInfoVO = new UserInfoVO();
                 BeanUtils.copyProperties(user, userInfoVO);
+                if (user.getAvatar() != null && !user.getAvatar().isBlank()) {
+                    userInfoVO.setAvatar(ImageProcess.getImageStr(String.valueOf(user.getId())));
+                }
                 userInfoVO.setAccessToken(TokenProvider.getToken(user));
                 result = new Result<>(userInfoVO);
             }
@@ -63,27 +68,27 @@ public class PersonalAPI {
     @PostMapping("/user/register")
     public Result<String> register(@RequestBody @Valid UserRegisterParam userRegisterParam) {
         User user = new User();
-        BeanUtils.copyProperties(userRegisterParam,user);
+        BeanUtils.copyProperties(userRegisterParam, user);
         Result<String> result;
-        if(userService.register(user)){
-            result=new Result<>();
-        }else{
-            result=new Result<>(ErrorCodeEnum.USER_REGISTER_ERROR.getError());
+        if (userService.register(user)) {
+            result = new Result<>();
+        } else {
+            result = new Result<>(ErrorCodeEnum.USER_REGISTER_ERROR.getError());
         }
         return result;
     }
 
-    @ApiOperation(value="修改信息",notes = "修改用户信息，包含头像")
+    @ApiOperation(value = "修改信息", notes = "修改用户信息，包含头像")
     @PostMapping("/user/modify")
-    public Result<String> modify(@TokenToUser User user, @RequestBody @Valid UserModifyParam userModifyParam){
+    public Result<String> modify(@TokenToUser User user, @RequestBody @Valid UserModifyParam userModifyParam) {
         Result<String> result;
         if (user == null) {
             result = new Result<>(ErrorCodeEnum.USER_TOKEN_INVALID.getError());
         } else {
-            if(userService.modify(user,userModifyParam)){
-                result=new Result<>();
-            }else{
-                result=new Result<>(ErrorCodeEnum.USER_MODIFY_ERROR.getError());
+            if (userService.modify(user, userModifyParam)) {
+                result = new Result<>();
+            } else {
+                result = new Result<>(ErrorCodeEnum.USER_MODIFY_ERROR.getError());
             }
         }
         return result;

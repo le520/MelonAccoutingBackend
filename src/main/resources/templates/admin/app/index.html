@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
+<head th:replace="common/head::head"></head>
+<body>
+<div class="app header-default side-nav-dark">
+    <div class="layout">
+        <div th:replace="common/head-nav::head-nav"></div>
+
+        <div th:replace="common/side-nav::side-nav"></div>
+
+        <div class="page-container">
+
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="breadcrumb-wrapper row">
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <h4 class="page-title">APP版本列表</h4>
+                        </div>
+                        <div class="col-12 col-lg-9 col-md-6">
+                            <ol class="breadcrumb float-right">
+                                <li><a href="/admin/app">版本控制</a></li>
+                                <li class="active"> / APP版本列表</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-title">APP版本列表</h4>
+                                </div>
+                                <div class="alert-box">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                         th:unless="${#strings.isEmpty(error)}">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong>糟糕!</strong>
+                                        <p th:text="${error}">用户名或密码错误，请重试!</p>
+                                    </div>
+                                </div>
+                                <div class="alert-box">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                         th:unless="${#strings.isEmpty(success)}">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong th:text="${success}">修改成功！</strong>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <div id="datatable_wrapper"
+                                             class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table id="datatable"
+                                                           class="table table-bordered dataTable no-footer" role="grid"
+                                                           aria-describedby="datatable_info">
+                                                        <thead>
+                                                        <tr role="row">
+                                                            <th>ID</th>
+                                                            <th>版本号</th>
+                                                            <th>版本特性</th>
+                                                            <th>发布日期</th>
+                                                            <th>状态</th>
+                                                            <th>操作</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr role="row" th:each="app:${appList}">
+                                                            <td th:text="${app.getId()}">
+                                                                #ODN84952
+                                                            </td>
+                                                            <td th:text="${app.getVersion()}">John Doe</td>
+                                                            <td th:text="${app.getInfo()}">John
+                                                            </td>
+                                                            <td th:text="${app.getUpdateTime()}">
+                                                            </td>
+                                                            <td th:switch="${app.getIsAvailable()}">
+                                                                <p th:case="0" class="badge badge-danger">撤回</p>
+                                                                <p th:case="1" class="badge badge-success">正常</p>
+                                                            </td>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <a href="javascript: void(0);"
+                                                                       class="dropdown-toggle arrow-none btn btn-light btn-sm"
+                                                                       data-toggle="dropdown" aria-expanded="false"><i
+                                                                            class="lni-more-alt"></i></a>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item"
+                                                                           th:href="${'/admin/app/delete/'+app.getId()}"><i
+                                                                                class="lni-trash mr-2 text-muted"></i>删除</a>
+                                                                        <a class="dropdown-item"
+                                                                           th:if="${app.getIsAvailable()==1}"
+                                                                           th:href="${'/admin/app/modify/'+app.getId()}"><i
+                                                                                class="lni-share-alt mr-2 text-muted"></i>撤回</a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+
+
+                </div>
+            </div>
+
+
+            <footer th:replace="common/footer::footer">
+            </footer>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+
+
+<script th:src="@{/static/admin/assets/js/jquery-min.js}"></script>
+<script th:src="@{/static/admin/assets/js/popper.min.js}"></script>
+<script th:src="@{/static/admin/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/admin/assets/js/jquery.app.js}"></script>
+<script th:src="@{/static/admin/assets/js/main.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.buttons.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.bootstrap4.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/jszip.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/pdfmake.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/vfs_fonts.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.html5.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.print.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/buttons.colVis.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/plugins/datatables/dataTables.responsive.min.js}"></script>
+<script th:src="@{/static/admin/assets/plugins/datatables/responsive.bootstrap4.min.js}"></script>
+
+<script th:src="@{/static/admin/assets/js/datatables.init.js}"></script>
+
+</body>
+</html>

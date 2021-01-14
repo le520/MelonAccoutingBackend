@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface ConfigRepository extends JpaRepository<Config, String> {
     List<Config> findAllByKind(int kind);
+
+    boolean existsConfigByKey(String key);
+
+    Config findConfigByKey(String key);
 }

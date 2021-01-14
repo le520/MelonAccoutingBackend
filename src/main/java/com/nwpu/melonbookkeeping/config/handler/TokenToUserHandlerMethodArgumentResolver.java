@@ -2,6 +2,7 @@ package com.nwpu.melonbookkeeping.config.handler;
 
 import com.nwpu.melonbookkeeping.config.annotation.TokenToUser;
 import com.nwpu.melonbookkeeping.entity.User;
+import com.nwpu.melonbookkeeping.service.ConfigService;
 import com.nwpu.melonbookkeeping.service.UserService;
 import com.nwpu.melonbookkeeping.util.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,15 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-
+/**
+ * 自定义Token转换为User注解
+ */
 @Component
 public class TokenToUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
     @Autowired
     UserService userService;
+    @Autowired
+    ConfigService configService;
 
     public TokenToUserHandlerMethodArgumentResolver() {
     }
@@ -39,8 +44,10 @@ public class TokenToUserHandlerMethodArgumentResolver implements HandlerMethodAr
             int userId = TokenProvider.getUserId(accessToken);
             if (userId != -1) {
                 user = userService.getUserById(TokenProvider.getUserId(accessToken));
+                userService.updateLastLoginTime(user);
             }
         }
+        configService.updateApiCallsCount();
         return user;
     }
 }

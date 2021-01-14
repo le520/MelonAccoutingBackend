@@ -1,12 +1,13 @@
 package com.nwpu.melonbookkeeping.controller.api.param;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * @author noorall
@@ -15,11 +16,30 @@ import java.sql.Date;
  */
 @Data
 public class BookkeepingAddParam {
-    @ApiModelProperty(value = "记录url", required = true)
-    @NotEmpty(message = "记录URL不能为空")
-    private String url;
+    @ApiModelProperty(value = "记录创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp time;
 
-    @ApiModelProperty(value = "记录创建时间", required = true, notes = "必须是过去的时间")
-    @Past
-    private Date createTime;
+    @ApiModelProperty(value = "记账金额")
+    private float count;
+
+    @ApiModelProperty(value = "收支类型")
+    @Min(1)
+    @Max(2)
+    private int outIntype;
+
+    @ApiModelProperty(value = "具体类型")
+    private String detailType;
+
+    @ApiModelProperty(value = "类型图标")
+    private int picRes;
+
+    @ApiModelProperty(value = "备注")
+    private String note;
+
+    @ApiModelProperty(value = "标签")
+    private String remark;
+
+    @ApiModelProperty(value = "定位数据")
+    private String location;
 }
