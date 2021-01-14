@@ -92,6 +92,7 @@ public class UserServiceImpl implements UserService {
         if (!userRepository.existsUserByUserName(user.getUserName())) {
             try {
                 user.setRegisterTime(new Timestamp(System.currentTimeMillis()));
+                userRepository.saveAndFlush(user);
                 return true;
             } catch (Exception e) {
                 return false;

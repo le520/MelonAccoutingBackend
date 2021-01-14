@@ -47,7 +47,7 @@ public class WebApplicationConfig implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/").addResourceLocations("/www/wwwroot/melon.le520.cn/static/");
     }
 
     /**

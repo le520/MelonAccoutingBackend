@@ -7,6 +7,8 @@ import org.springframework.util.ResourceUtils;
 import java.io.*;
 import java.util.Objects;
 
+import static com.nwpu.melonbookkeeping.common.Constants.AVATAR_STATIC_BASE_PATH;
+
 /**
  * @author noorall
  * @date 2021/1/102:10 下午
@@ -24,8 +26,8 @@ public class ImageProcess {
         if (imgStr == null)
             return false;
         try {
-            imgStr=imgStr.replace("\r\n", "");
-            imgStr=imgStr.replace("\n", "");
+            imgStr = imgStr.replace("\r\n", "");
+            imgStr = imgStr.replace("\n", "");
             // 解密
             byte[] b = Base64Utils.decodeFromString(imgStr);
             // 处理数据
@@ -34,8 +36,13 @@ public class ImageProcess {
                     b[i] += 256;
                 }
             }
-            path = ResourceUtils.getURL("classpath:").getPath() + "static/user/avatar/" + path + ".png";
-            OutputStream out = new FileOutputStream(path);
+
+            path = AVATAR_STATIC_BASE_PATH + path + ".png";
+            File file = new File(path);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            OutputStream out = new FileOutputStream(file);
             out.write(b);
             out.flush();
             out.close();
@@ -57,7 +64,7 @@ public class ImageProcess {
         byte[] data = null;
         // 读取图片字节数组
         try {
-            imgFile = ResourceUtils.getURL("classpath:").getPath() + "static/user/avatar/" + imgFile + ".png";
+            imgFile = AVATAR_STATIC_BASE_PATH + imgFile + ".png";
             in = new FileInputStream(imgFile);
             data = new byte[in.available()];
             in.read(data);
