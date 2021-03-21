@@ -44,7 +44,11 @@ public class TokenToUserHandlerMethodArgumentResolver implements HandlerMethodAr
             int userId = TokenProvider.getUserId(accessToken);
             if (userId != -1) {
                 user = userService.getUserById(TokenProvider.getUserId(accessToken));
-                userService.updateLastLoginTime(user);
+                if(user.getStatus()==0){
+                    user=null;
+                }else{
+                    userService.updateLastLoginTime(user);
+                }
             }
         }
         configService.updateApiCallsCount();

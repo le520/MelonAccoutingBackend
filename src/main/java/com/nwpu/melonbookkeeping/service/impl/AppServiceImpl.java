@@ -26,11 +26,12 @@ public class AppServiceImpl implements AppService {
 
     /**
      * 获取最新版本的APP
+     *
      * @return 最新版本的APP信息
      */
     @Override
     public App getNewestApp() {
-        List<App> appList = appRepository.findAll();
+        List<App> appList = appRepository.getAppsByIsAvailable(1);
         if (appList.size() == 0) {
             return null;
         } else {
@@ -40,7 +41,8 @@ public class AppServiceImpl implements AppService {
 
     /**
      * 获取最新版本号
-      * @return 返回最新版本号
+     *
+     * @return 返回最新版本号
      */
     @Override
     public int getNewestVersion() {
@@ -54,6 +56,7 @@ public class AppServiceImpl implements AppService {
 
     /**
      * 保存一个APP配置
+     *
      * @param app app信息
      * @return 是否保存成功
      */
@@ -70,6 +73,7 @@ public class AppServiceImpl implements AppService {
 
     /**
      * 获取所有APP
+     *
      * @return 获取所有APP信息
      */
     @Override
@@ -79,6 +83,7 @@ public class AppServiceImpl implements AppService {
 
     /**
      * 删除APP
+     *
      * @param id 要删除APP版本的id
      * @return 是否删除成功
      */
@@ -94,6 +99,7 @@ public class AppServiceImpl implements AppService {
 
     /**
      * 撤回APP
+     *
      * @param id 要撤回的app的ID
      * @return 是否撤回成功
      */

@@ -20,4 +20,5 @@ public interface AppRepository extends JpaRepository<App, Integer> {
     App findAppById(int id);
 
     App findFirstByIdIsAfter(int id);
+
 }

@@ -6,7 +6,7 @@
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Fractal by HTML5 UP</title>
+    <title>[[${webTitle}]]</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" th:href="@{/static/index/assets/css/main.css}"/>
@@ -23,7 +23,7 @@
             <a href="#" th:text="${webTitle}"></a></h1>
         <p th:text="${webDescription}"></p>
         <ul class="actions">
-            <li><a href="#" class="button primary icon solid fa-download">Download</a></li>
+            <li><a href="/web/1003.apk" class="button primary icon solid fa-download">Download</a></li>
             <li><a href="/api" class="button icon solid fa-chevron-down scrolly">API文档</a></li>
         </ul>
     </div>
